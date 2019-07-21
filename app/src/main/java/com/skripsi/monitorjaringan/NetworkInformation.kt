@@ -14,6 +14,7 @@ class NetworkInformation : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_network_information)
 
+
         graphView = findViewById(R.id.graph_network)
         val series: LineGraphSeries<DataPoint> = LineGraphSeries(arrayOf(
             DataPoint(0.toDouble(), 7.toDouble()),
