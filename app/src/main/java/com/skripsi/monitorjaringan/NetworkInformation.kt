@@ -19,7 +19,7 @@ class NetworkInformation : AppCompatActivity() {
         val series: LineGraphSeries<DataPoint> = LineGraphSeries(arrayOf(
             DataPoint(0.toDouble(), 7.toDouble()),
             DataPoint(2.toDouble(), 4.toDouble()),
-            DataPoint(6.toDouble(), 9.toDouble())
+            DataPoint(20.toDouble(), 9.toDouble())
         ))
         graphView.addSeries(series)
     }
