@@ -52,10 +52,9 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:textSize="14sp"
-                android:text="eth0"
+                tools:text="eth0"
                 app:layout_constraintStart_toEndOf="@id/txt_name1"
-                app:layout_constraintTop_toTopOf="@id/txt_name1"
-                tools:text="names" />
+                app:layout_constraintTop_toTopOf="@id/txt_name1" />
 
             <TextView
                 android:id="@+id/txt_address1"
@@ -75,10 +74,9 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:textSize="14sp"
-                android:text="192.168.43.1"
+                tools:text="192.168.43.1"
                 app:layout_constraintStart_toEndOf="@id/txt_address1"
-                app:layout_constraintTop_toTopOf="@id/txt_address1"
-                tools:text="address" />
+                app:layout_constraintTop_toTopOf="@id/txt_address1" />
 
             <TextView
                 android:id="@+id/txt_name2"
@@ -99,10 +97,9 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:textSize="14sp"
-                android:text="eth1"
+                tools:text="eth1"
                 app:layout_constraintStart_toEndOf="@id/txt_name2"
-                app:layout_constraintTop_toTopOf="@id/txt_name2"
-                tools:text="names" />
+                app:layout_constraintTop_toTopOf="@id/txt_name2" />
 
             <TextView
                 android:id="@+id/txt_address2"
@@ -124,10 +121,9 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:textSize="14sp"
-                android:text="192.168.43.3"
+                tools:text="192.168.43.3"
                 app:layout_constraintStart_toEndOf="@id/txt_address2"
-                app:layout_constraintTop_toTopOf="@id/txt_address2"
-                tools:text="address" />
+                app:layout_constraintTop_toTopOf="@id/txt_address2" />
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 

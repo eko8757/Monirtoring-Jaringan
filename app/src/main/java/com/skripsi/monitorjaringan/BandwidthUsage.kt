@@ -1,25 +1,79 @@
 package com.skripsi.monitorjaringan
 
+import android.app.ProgressDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.google.firebase.database.*
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
+import com.skripsi.monitorjaringan.model.respon.BandwidthInfo
+import kotlinx.android.synthetic.main.activity_bandwidth_usage.*
 
 class BandwidthUsage : AppCompatActivity() {
 
+    lateinit var dataBase: FirebaseDatabase
+    lateinit var refernce: DatabaseReference
     lateinit var graphView: GraphView
+    lateinit var dataBandwidth: ArrayList<BandwidthInfo>
+    var point: String = "0"
+    lateinit var progress : ProgressDialog
+    var totalX: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bandwidth_usage)
+        dataBandwidth = ArrayList()
 
+        dataBase = FirebaseDatabase.getInstance()
+        refernce = dataBase.getReference("network_info")
+
+        refernce.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapShot: DataSnapshot) {
+                showData(dataSnapShot)
+                Log.d("dataSanpshoot", dataSnapShot.toString())
+            }
+
+            override fun onCancelled(dataBaseError: DatabaseError) {
+                Log.d("dataBaseError", dataBaseError.toString())
+            }
+        })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        progress = ProgressDialog(this)
+        progress.setMessage("Please wait..")
+        progress.show()
+    }
+
+    private fun showData(ds : DataSnapshot) {
         graphView = findViewById(R.id.graph_bandwidth)
-        val series: LineGraphSeries<DataPoint> = LineGraphSeries(arrayOf(
-            DataPoint(0.toDouble(), 7.toDouble()),
-            DataPoint(2.toDouble(), 4.toDouble()),
-            DataPoint(20.toDouble(), 9.toDouble())
-        ))
+        val series: LineGraphSeries<DataPoint> = LineGraphSeries()
         graphView.addSeries(series)
+        graphView.viewport.isXAxisBoundsManual = true
+        graphView.viewport.setMinX(0.0)
+        graphView.viewport.setMaxX(totalX.toDouble())
+
+        for (data in ds.children) {
+            txt_IP1.text = data.child("mac").getValue().toString()
+            upload1.text = data.child("net_in").getValue().toString()
+            download1.text = data.child("net_out").getValue().toString()
+
+            //set to graphic
+            point = data.child("speed").getValue().toString()
+            Log.d("point", point)
+            val d = DataPoint(totalX.toDouble(), point.toDouble())
+            series.appendData(d, true, 10)
+
+            Log.d("totalX", totalX.toString())
+            totalX ++
+
+            txt_IP2.text = data.child("mac").getValue().toString()
+            upload2.text = data.child("net_in").getValue().toString()
+            download2.text = data.child("net_out").getValue().toString()
+            progress.dismiss()
+        }
     }
 }
