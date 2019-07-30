@@ -1,4 +1,4 @@
-package com.skripsi.monitorjaringan.onboarding
+package com.skripsi.monitorjaringan
 
 import android.content.Context
 import android.content.Intent
@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import com.skripsi.monitorjaringan.R
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUp : AppCompatActivity() {

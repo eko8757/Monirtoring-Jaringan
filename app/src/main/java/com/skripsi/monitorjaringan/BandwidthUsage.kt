@@ -8,7 +8,6 @@ import com.google.firebase.database.*
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
-import com.skripsi.monitorjaringan.model.respon.BandwidthInfo
 import kotlinx.android.synthetic.main.activity_bandwidth_usage.*
 
 class BandwidthUsage : AppCompatActivity() {
@@ -16,7 +15,6 @@ class BandwidthUsage : AppCompatActivity() {
     lateinit var dataBase: FirebaseDatabase
     lateinit var refernce: DatabaseReference
     lateinit var graphView: GraphView
-    lateinit var dataBandwidth: ArrayList<BandwidthInfo>
     var point: String = "0"
     lateinit var progress : ProgressDialog
     var totalX: Int = 0
@@ -24,7 +22,6 @@ class BandwidthUsage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bandwidth_usage)
-        dataBandwidth = ArrayList()
 
         dataBase = FirebaseDatabase.getInstance()
         refernce = dataBase.getReference("network_info")

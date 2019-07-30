@@ -2,7 +2,6 @@ package com.skripsi.monitorjaringan
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_resource_detail.*
 import kotlinx.android.synthetic.main.activity_server_information.*
 import org.json.JSONArray
 import org.json.JSONException
