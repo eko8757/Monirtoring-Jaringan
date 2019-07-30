@@ -9,8 +9,8 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_server"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         android:clickable="true"
@@ -46,8 +46,8 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_network"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_marginEnd="24dp"
         android:clickable="true"
         android:focusable="true"
@@ -80,48 +80,16 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/card_bandwidth"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintStart_toStartOf="@+id/card_server"
-        app:layout_constraintTop_toBottomOf="@+id/card_server">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/img_bandwidth"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/bandwidth" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/img_bandwidth"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/montserrat_regular"
-                android:text="Banwidth"
-                android:textSize="12sp" />
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
         android:id="@+id/card_resource"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/card_network"
-        app:layout_constraintStart_toStartOf="@+id/card_network"
-        app:layout_constraintTop_toTopOf="@+id/card_bandwidth">
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="@id/card_server"
+        app:layout_constraintEnd_toEndOf="@id/card_server"
+        app:layout_constraintTop_toBottomOf="@id/card_server">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -148,15 +116,15 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_about"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_marginTop="40dp"
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_bandwidth">
+        app:layout_constraintTop_toBottomOf="@id/card_network"
+        app:layout_constraintStart_toStartOf="@id/card_network"
+        app:layout_constraintEnd_toEndOf="@id/card_network">
 
         <RelativeLayout
             android:layout_width="match_parent"

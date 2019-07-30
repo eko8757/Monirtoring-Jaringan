@@ -1,7 +1,11 @@
 package com.skripsi.monitorjaringan
 
+import android.app.ProgressDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_network_information.*
 import kotlinx.android.synthetic.main.activity_resource_detail.*
 import org.json.JSONArray
 import org.json.JSONException
@@ -9,46 +13,41 @@ import org.json.JSONObject
 
 class ResourceDetail : AppCompatActivity() {
 
+    lateinit var dataBase: FirebaseDatabase
+    lateinit var refernce: DatabaseReference
+    lateinit var progress : ProgressDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resource_detail)
 
-        val strJson = "{\n" +
-                "\t\"resource_detail\":[\n" +
-                "\t  {\n" +
-                "\t\t\"built_time\" : \"des/1/2018\",\n" +
-                "\t\t\"cpu\" : \"mips 24 kc v7\",\n" +
-                "\t\t\"cpu_load\" : \"2\",\n" +
-                "\t\t\"platform\" : \"mikrotik\",\n" +
-                "\t\t\"version\" : \"6\",\n" +
-                "\t\t\"total_memory\":\"4\",\n" +
-                "\t  }\n" +
-                "   ]\n" +
-                "}"
+        dataBase = FirebaseDatabase.getInstance()
+        refernce = dataBase.getReference("network_info")
 
-        try {
-            val jsonObject = JSONObject(strJson)
-            val jsonArray: JSONArray = jsonObject.optJSONArray("resource_detail")
-            for (i in 0 until jsonArray.length()) {
-                val obj: JSONObject = jsonArray.getJSONObject(i)
-
-                val buildTime = obj.optString("built_time").toString()
-                val Cpu = obj.optString("cpu").toString()
-                val cpuLoad = obj.optString("cpu_load").toString()
-                val platForm = obj.optString("platform").toString()
-                val version = obj.optString("versions").toString()
-                val totalMemory = obj.optString("total_memory").toString()
-
-                cpu_load.text ="2"
-                cpu.text = "idshjf"
-                built_time.text = "idshjf"
-                platform.text = "idshjf"
-                total_memory.text = "idshjf"
-                versions.text = "idshjf"
+        refernce.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapShot: DataSnapshot) {
+                showData(dataSnapShot)
             }
 
-        } catch (e: JSONException) {
-            e.printStackTrace()
+            override fun onCancelled(dataBaseError: DatabaseError) {
+                Log.d("dataBaseError", dataBaseError.toString())
+            }
+        })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        progress = ProgressDialog(this)
+        progress.setMessage("Please wait..")
+        progress.show()
+    }
+
+    private fun showData(dataSnapShot: DataSnapshot) {
+        for (data in dataSnapShot.children) {
+            type.text = data.child("type").getValue().toString()
+            mtu.text = data.child("mtu").getValue().toString()
+            servers.text = data.child("mac").getValue().toString()
+            progress.dismiss()
         }
     }
 }

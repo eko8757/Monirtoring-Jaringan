@@ -20,15 +20,13 @@ class SplashScreen : AppCompatActivity() {
     }
 
     internal val mRunnable: Runnable = Runnable {
-        if (!isFinishing){
-            val i = Intent(this, Login::class.java)
-            startActivity(i)
-            finish()
+        if (!isFinishing) {
+            startActivity(Intent(this, Login::class.java))
         }
     }
 
     public override fun onDestroy() {
-        if (mDelayHandler != null){
+        if (mDelayHandler != null) {
             mDelayHandler!!.removeCallbacks(mRunnable)
         }
         super.onDestroy()

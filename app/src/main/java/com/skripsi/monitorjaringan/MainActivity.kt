@@ -6,9 +6,12 @@ import android.os.Bundle
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AlertDialog
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +22,6 @@ class MainActivity : AppCompatActivity() {
 
         card_server.setBackgroundResource(R.drawable.bg_shadow_card)
         card_network.setBackgroundResource(R.drawable.bg_shadow_card)
-        card_bandwidth.setBackgroundResource(R.drawable.bg_shadow_card)
         card_resource.setBackgroundResource(R.drawable.bg_shadow_card)
         card_about.setBackgroundResource(R.drawable.bg_shadow_card)
 
@@ -36,16 +38,6 @@ class MainActivity : AppCompatActivity() {
         card_network.setOnClickListener {
             Toast.makeText(this, "Network Info", Toast.LENGTH_SHORT).show()
             val i = Intent(this, NetworkInformation::class.java)
-            startActivity(i)
-            overridePendingTransition(
-                R.anim.slide_in_right,
-                R.anim.slide_out_left
-            )
-        }
-
-        card_bandwidth.setOnClickListener {
-            Toast.makeText(this, "Bandwith Usage", Toast.LENGTH_SHORT).show()
-            val i = Intent(this, BandwidthUsage::class.java)
             startActivity(i)
             overridePendingTransition(
                 R.anim.slide_in_right,
@@ -93,5 +85,22 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Batal", Toast.LENGTH_SHORT).show()
             alert.dismiss()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.logout, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        val id = item?.itemId
+        when(id) {
+            R.id.logout -> {
+                startActivity(Intent(this, Login::class.java))
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

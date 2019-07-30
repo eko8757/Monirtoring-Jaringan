@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_login.*
 
 class Login : AppCompatActivity() {
